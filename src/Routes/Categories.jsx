@@ -1,9 +1,7 @@
-import React, { Component } from 'react'
+import React from 'react';
 
-export default class In  extends Component {
-  render() {
-    return (
-      <h2>In construction</h2>
-    )
-  }
+export default function Categories() {
+  return (
+    <button className="primary-button-big" type="button">Check Status</button>
+  );
 }
