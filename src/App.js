@@ -1,7 +1,9 @@
+import { Route, Routes } from 'react-router-dom';
 import './App.css';
-import Book from './components/Book';
 import Navbar from './components/Navbar';
-import NewBook from './components/NewBook';
+import Books from './Routes/Books';
+import Categories from './Routes/Categories'
+
 
 
 function App() {
@@ -9,13 +11,10 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="container">
-        <ul className="books">
-          <li><Book category="history" author="Timmy's dad" title="The little dolphin who cried"/></li>
-          <li><Book category="history" author="Timmy's dad" title="The little dolphin who cried"/></li>
-          <li><Book category="history" author="Timmy's dad" title="The little dolphin who cried"/></li>
-        </ul>
-        <div class="horizontal-divider"></div>
-        <NewBook />
+        <Routes>
+          <Route path="/" element={<Books />} />
+          <Route exact path="/Categories" element={<Categories />} />
+        </Routes>
       </div>
     </div>
   );
