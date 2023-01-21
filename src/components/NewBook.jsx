@@ -21,6 +21,7 @@ class NewBook extends Component {
   }
 
   render() {
+    const { title, category } = this.state;
     return (
       <>
         <h2 className="form-title"> ADD NEW BOOK </h2>
@@ -28,14 +29,15 @@ class NewBook extends Component {
           <input
             type="text"
             name="title"
-            value={this.state.title}
+            value={title}
             placeholder="Book title"
             className="input title-input"
-            onChange={this.handleChange} />
+            onChange={this.handleChange}
+          />
           <select
             name="category"
             className="input category-input"
-            value={this.state.category}
+            value={category}
             onChange={this.handleChange}
           >
             <option value="Fiction">Fiction</option>
