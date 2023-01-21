@@ -9,7 +9,11 @@ function App() {
     <div className="App">
       <Navbar />
       <div className="container">
-        <Book category="history" author="Oscar" title="The little crazy"/>
+        <ul className="books">
+          <li><Book category="history" author="Timmy's dad" title="The little dolphin who cried"/></li>
+          <li><Book category="history" author="Timmy's dad" title="The little dolphin who cried"/></li>
+          <li><Book category="history" author="Timmy's dad" title="The little dolphin who cried"/></li>
+        </ul>
         <div class="horizontal-divider"></div>
         <NewBook />
       </div>
