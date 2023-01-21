@@ -8,10 +8,10 @@ body {
   background-color: #f5f6fa;
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 
 #root {
   margin: 0;
@@ -46,9 +46,9 @@ code {
 }
 
 .nav-link {
-  opacity: .5;
+  opacity: 0.5;
   font-family: "Montserrat", sans-serif;
-  font-size: .813rem;
+  font-size: 0.813rem;
   letter-spacing: 1.9px;
 }
 
@@ -107,25 +107,26 @@ code {
   width: 100%;
 }
 
-.book-category, .book-title {
+.book-category,
+.book-title {
   font-weight: 700;
   color: #121212;
 }
 
 .book-category {
-  font-family: "Montserrat",sans-serif;
-  font-size: .875rem;
-  opacity: .5;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.875rem;
+  opacity: 0.5;
 }
 
 .book-title {
   margin-top: 0.188rem;
   font-size: 1.375rem;
-  letter-spacing: -.2px;
+  letter-spacing: -0.2px;
 }
 
 .book-author {
-  font-size: .875rem;
+  font-size: 0.875rem;
   font-weight: 300;
   color: #4386bf;
 }
@@ -137,11 +138,11 @@ code {
 }
 
 .button-outline {
-  font-family: "Roboto Slab",serif;
+  font-family: "Roboto Slab", serif;
   background-color: transparent;
   border: none;
   color: #4386bf;
-  font-size: .875rem;
+  font-size: 0.875rem;
   font-weight: 300;
   align-items: center;
   cursor: pointer;
@@ -179,8 +180,9 @@ code {
   transform: rotate(45deg);
 }
 
-.completed, .percent-complete {
-  font-family: "Montserrat",sans-serif;
+.completed,
+.percent-complete {
+  font-family: "Montserrat", sans-serif;
   color: #121212;
 }
 
@@ -189,8 +191,8 @@ code {
 }
 
 .completed {
-  font-size: .875rem;
-  opacity: .5;
+  font-size: 0.875rem;
+  opacity: 0.5;
 }
 
 .progress-divider {
@@ -208,20 +210,21 @@ code {
   width: 14rem;
 }
 
-.current-chapter, .current-chapter-label {
-  font-family: "Roboto Slab",serif;
+.current-chapter,
+.current-chapter-label {
+  font-family: "Roboto Slab", serif;
   font-weight: 300;
   color: #121212;
 }
 .current-chapter-label {
-  font-size: .813rem;
-  opacity: .5;
+  font-size: 0.813rem;
+  opacity: 0.5;
 }
 
 .current-chapter {
   margin-top: 0.438rem;
   font-size: 1rem;
-  letter-spacing: -.4px;
+  letter-spacing: -0.4px;
 }
 
 .primary-button {
@@ -230,9 +233,9 @@ code {
   background-color: #0290ff;
   border-radius: 3px;
   padding: 8px 24px;
-  font-family: "Roboto Slab",serif;
+  font-family: "Roboto Slab", serif;
   font-weight: 300;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   color: #fff;
 }
 
@@ -245,14 +248,15 @@ code {
   margin: 2.5rem 0 1.813rem;
 }
 
-.form-title, .input {
-  font-family: "Montserrat",sans-serif;
+.form-title,
+.input {
+  font-family: "Montserrat", sans-serif;
 }
 
 .form-title {
   font-size: 1.25rem;
   font-weight: 700;
-  letter-spacing: -.18px;
+  letter-spacing: -0.18px;
   color: #888;
 }
 
@@ -266,13 +270,14 @@ code {
 .title-input {
   width: 50%;
 }
+
 .input {
   padding: 12px;
   border-radius: 4px;
   border: 1px solid #e8e8e8;
   background-color: #fff;
   font-size: 1rem;
-  letter-spacing: -.15px;
+  letter-spacing: -0.15px;
   color: #121212;
 }
 
@@ -287,9 +292,9 @@ code {
   border-radius: 3px;
   background-color: #0290ff;
   border: none;
-  letter-spacing: .5px;
+  letter-spacing: 0.5px;
   color: #fff;
-  font-size: .813rem;
+  font-size: 0.813rem;
   font-weight: 700;
-  font-family: "Roboto Slab",serif;
+  font-family: "Roboto Slab", serif;
 }
