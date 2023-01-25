@@ -1,6 +1,10 @@
 import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
+import { removeBook } from '../redux/books/books';
 
 function Book(props) {
+  const dispatch = useDispatch();
+
   const {
     category, title, author, progress, currentChapter,
   } = props;
@@ -10,11 +14,11 @@ function Book(props) {
         <div className="book-info">
           <h4 className="book-category">{category}</h4>
           <h2 className="book-title">{title}</h2>
-          <h6 className="book-author">{author}</h6>
+          <h6 className="book-author">{'unknwon' || author}</h6>
           <div className="action-buttons">
             <button type="button" className="button-outline">Comments</button>
             <div className="vertical-divider" />
-            <button type="button" className="button-outline">Remove</button>
+            <button type="button" className="button-outline" onClick={() => dispatch(removeBook(title))}>Remove</button>
             <div className="vertical-divider" />
             <button type="button" className="button-outline">Edit</button>
           </div>
@@ -25,7 +29,7 @@ function Book(props) {
           </div>
           <div className="progress-stat">
             <p className="percent-complete">
-              {progress}
+              {0 || progress}
               %
             </p>
             <p className="completed">Completed</p>
@@ -37,7 +41,7 @@ function Book(props) {
               <p className="current-chapter">
                 Chapter
                 {' '}
-                {currentChapter}
+                {0 || currentChapter}
               </p>
             </div>
             <button className="primary-button" type="button">UPDATE PROGRESS</button>
