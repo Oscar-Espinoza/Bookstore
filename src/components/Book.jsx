@@ -1,7 +1,9 @@
 import PropTypes from 'prop-types';
 
 function Book(props) {
-  const { category, title, author } = props;
+  const {
+    category, title, author, progress, currentChapter,
+  } = props;
   return (
     <div className="book">
       <div className="book-content">
@@ -22,14 +24,21 @@ function Book(props) {
             <div className="circular-progress" />
           </div>
           <div className="progress-stat">
-            <p className="percent-complete">64%</p>
+            <p className="percent-complete">
+              {progress}
+              %
+            </p>
             <p className="completed">Completed</p>
           </div>
           <div className="progress-divider" />
           <div className="current-chapter-container">
             <div>
               <p className="current-chapter-label">CURRENT CHAPTER</p>
-              <p className="current-chapter">Chapter 17</p>
+              <p className="current-chapter">
+                Chapter
+                {' '}
+                {currentChapter}
+              </p>
             </div>
             <button className="primary-button" type="button">UPDATE PROGRESS</button>
           </div>
@@ -45,4 +54,6 @@ Book.propTypes = {
   category: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   author: PropTypes.string.isRequired,
+  progress: PropTypes.number.isRequired,
+  currentChapter: PropTypes.number.isRequired,
 };
