@@ -1,8 +1,7 @@
-import axios from 'axios';
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../redux/books/books';
-import { baseUrl, generateID } from '../redux/store';
+import { generateID } from '../redux/store';
 
 const initialState = {
   item_id: generateID(),
@@ -16,16 +15,13 @@ export default function NewBook() {
 
   const dispatch = useDispatch();
 
-  const handleSubmit = async (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    await axios.post(baseUrl, formData)
-      .then(() => {
-        dispatch(addBook(formData));
-        setFormData({
-          ...initialState,
-          item_id: generateID(),
-        });
-      });
+    dispatch(addBook(formData));
+    setFormData({
+      ...initialState,
+      item_id: generateID(),
+    });
   };
 
   const handleChange = (e) => {
