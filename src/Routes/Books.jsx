@@ -1,30 +1,42 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import Book from '../components/Book';
 import NewBook from '../components/NewBook';
+import { getBooks } from '../redux/books/books';
 
 export default function Books() {
-  const books = useSelector((state) => state.books);
+  const { books, isLoading } = useSelector((state) => state.books);
+  const dispatch = useDispatch();
 
-  useEffect(() => () => {}, [books]);
+  useEffect(() => {
+    dispatch(getBooks());
+  }, [dispatch]);
 
+  if (!isLoading) {
+    return (
+      <>
+        <ul className="books">
+          {Object.keys(books).map((bookId) => (
+            <li key={bookId} id={bookId}>
+              <Book
+                category={books[bookId][0].category || ''}
+                author={books[bookId][0].author || ''}
+                title={books[bookId][0].title || ''}
+                progress={books[bookId][0].progress || 0}
+                currentChapter={books[bookId][0].chapter || 1}
+                id={bookId}
+              />
+            </li>
+          ))}
+        </ul>
+        <div className="horizontal-divider" />
+        <NewBook />
+      </>
+    );
+  }
   return (
-    <>
-      <ul className="books">
-        {books.map((book) => (
-          <li key={book.title}>
-            <Book
-              category={book.category}
-              author={book.author || 'unknwon'}
-              title={book.title}
-              progress={book.progress || 0}
-              currentChapter={book.chapter || 1}
-            />
-          </li>
-        ))}
-      </ul>
-      <div className="horizontal-divider" />
-      <NewBook />
-    </>
+    <h2>
+      Loading...
+    </h2>
   );
 }

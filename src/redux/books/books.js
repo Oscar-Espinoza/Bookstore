@@ -1,32 +1,66 @@
-import { createSlice } from '@reduxjs/toolkit';
+/* eslint-disable camelcase */
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const initialState = [{
-  category: 'Fiction', title: 'The Great Gatsby', author: 'F. Scott Fitzgerald', progress: 75, chapter: 8,
-}, {
-  category: 'Science Fiction', title: 'Dune', author: 'Frank Herbert', progress: 50, chapter: 12,
-}, {
-  category: 'Mystery', title: 'Murder on the Orient Express', author: 'Agatha Christie', progress: 25, chapter: 3,
-}];
+const apiId = 'qO00VEuARfSLWwqDGcKq';
+export const baseUrl = `https://us-central1-bookstore-api-e63c8.cloudfunctions.net/bookstoreApi/apps/${apiId}/books/`;
+const initialState = {
+  isLoading: false,
+  books: {},
+};
+
+export const getBooks = createAsyncThunk('books/getBooks', () => axios.get(baseUrl)
+  .then((res) => res.data));
+
+export const removeBook = createAsyncThunk('books/removeBook', (id) => axios.delete(baseUrl + id)
+  .then(() => id));
+
+export const addBook = createAsyncThunk('books/addBook', (book) => axios.post(baseUrl, book)
+  .then(() => book));
 
 const booksSlice = createSlice({
   name: 'books',
   initialState,
   reducers: {
-    addBook: (state, action) => [...state, action.payload],
-    removeBook: (state, action) => {
-      switch (action.type) {
-        case 'books/removeBook': {
-          const bookIndex = state.map((book) => book.title).indexOf(action.payload);
-          const newState = state.slice(0, bookIndex).concat(state.slice(bookIndex + 1));
-          return newState;
-        }
-        default:
-          return state;
-      }
+    setBooks: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+  },
+  extraReducers: {
+    [getBooks.pending]: (state) => ({ ...state, isLoading: true }),
+    [getBooks.fulfilled]: (state, action) => ({
+      ...state, isLoading: false, books: action.payload,
+    }),
+    [getBooks.rejected]: (state) => ({ ...state, isLoading: false }),
+    [removeBook.fulfilled]: (state, action) => {
+      const newState = { ...state };
+      delete newState.books[action.payload];
     },
+    [addBook.fulfilled]: (state, action) => {
+      const newBook = action.payload;
+      console.log({ ...state.books });
+      const {
+        category, author, title, item_id,
+      } = newBook;
+      return {
+        ...state,
+        books: {
+          ...state.books,
+          [item_id]: [
+            {
+              category,
+              author,
+              title,
+            },
+          ],
+        },
+      };
+    },
+    [addBook.rejected]: (state) => state,
   },
 });
 
-export const { addBook, removeBook } = booksSlice.actions;
+export const { setBooks } = booksSlice.actions;
 
 export default booksSlice.reducer;

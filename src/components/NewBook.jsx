@@ -1,18 +1,27 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { addBook } from '../redux/books/books';
+import { generateID } from '../redux/store';
+
+const initialState = {
+  item_id: generateID(),
+  title: '',
+  author: '',
+  category: 'Fiction',
+};
 
 export default function NewBook() {
-  const [formData, setFormData] = useState({
-    title: '',
-    category: 'Fiction',
-  });
+  const [formData, setFormData] = useState(initialState);
 
   const dispatch = useDispatch();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(addBook(formData));
+    setFormData({
+      ...initialState,
+      item_id: generateID(),
+    });
   };
 
   const handleChange = (e) => {
@@ -22,7 +31,7 @@ export default function NewBook() {
     });
   };
 
-  const { title, category } = formData;
+  const { title, category, author } = formData;
 
   return (
     <>
@@ -33,6 +42,15 @@ export default function NewBook() {
           name="title"
           value={title}
           placeholder="Book title"
+          className="input title-input"
+          onChange={handleChange}
+          required
+        />
+        <input
+          type="text"
+          name="author"
+          value={author}
+          placeholder="Author"
           className="input title-input"
           onChange={handleChange}
           required
