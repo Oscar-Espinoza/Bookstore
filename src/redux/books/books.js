@@ -39,7 +39,6 @@ const booksSlice = createSlice({
     },
     [addBook.fulfilled]: (state, action) => {
       const newBook = action.payload;
-      console.log({ ...state.books });
       const {
         category, author, title, item_id,
       } = newBook;
